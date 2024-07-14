@@ -15,8 +15,8 @@ This project takes you on a journey to understand the fundamental workings of a 
 
 ## Getting Started:
 
-This project requires no additional software or server setup. Download this project and start the emulator directly in your browser by clicking the **index.html** file.  Alternatively, check out [index.html](GitHub.io) running directly on GitHub.
-All the JavaScript components can be found in the /res folder and can be opened using your favorite development environment (IDE) with basic JavaScript syntax highlighting.
+This project requires no additional software or server setup. Download this project and start the emulator directly in your browser by clicking the local file **index.html**.  Alternatively, check out [index.html](GitHub.io) to run this project directly on GitHub.
+All the JavaScript components can be found in the /res folder and can be opened using your favorite development environment (IDE) featuring basic JavaScript syntax highlighting.
 
 index.html: The main HTML file that displays the emulator interface and loads the JavaScript components.
 cpu.js: Defines the Central Processing Unit with functions for fetching, decoding, and executing instructions.
