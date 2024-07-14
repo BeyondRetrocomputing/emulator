@@ -32,8 +32,14 @@
     }
   </style>
   <script>
-    var arr = [{name:"EMULATOR_v0",zoom:2.5},{name:"EMULATOR_v1",zoom:2},{name:"EMULATOR_v2",zoom:1.5},{name:"EMULATOR_v3",zoom:1}]
-    window.onload = function() {
+    var arr = [
+             {name:"EMULATOR_v0",zoom:2.5}
+            ,{name:"EMULATOR_v1",zoom:2}
+            ,{name:"EMULATOR_v2",zoom:1.5}
+            //,{name:"EMULATOR_v3",zoom:1}
+              ]
+    window.onload = function()
+    {
         for(var i=0;i<arr.length;i++)
             document.getElementById("menu").innerHTML += "<li><a href=\""+ arr[i].name + ".html\">"
                 + "<img style=\"--zoom:"+arr[i].zoom+"\" src=\"https://github.com/BeyondRetrocomputing/emulator/raw/main/res/image_fx_a_computer_in_a_computer_B.jpg?raw=true\">"
