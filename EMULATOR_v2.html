@@ -1,0 +1,56 @@
+<script>
+    // v2 GOAL: emulator dutyCycle
+
+    //   - start the emulator
+    //   - run CPU cycles at 1MHz
+    //   - display CPU utilisation
+
+    const oEMU =                        // immediate instantiation of the emulator object
+    {
+         frequency_hz:    1000000       // emulator system clock frequency
+        ,cycleRate_hz:    10            // emulator interval frequency (too low: bad update speed vs. too high: bad CPU performance)
+        ,refreshRate_hz:  2             // display refresh (refreshRate_hz < cycleRate_hz)
+        ,cycleChrono: 0,cycleSpan: 0, docReady: false
+
+        ,run() 
+        {
+            this.cycleSize      = this.frequency_hz / this.cycleRate_hz;    // amount of cycles per interval
+            this.refreshCountDn = this.frequency_hz / this.refreshRate_hz;  // amount of refreshes per interval
+            const cycleTime_ms  = 1000 / this.cycleRate_hz;                 // duration of one interval
+
+            setInterval(()=>                                                // arrow function passes 'this' during callback instead of window object
+            {
+                const startChrono = performance.now();                      // start chronometer
+                for (let n = 0; n < this.cycleSize; n++)
+                {
+                    this.cpu.cycle();
+                    if (this.refreshCountDn-- <= 0) this.refresh();         // countdown until display refresh
+                }
+                this.cycleChrono += performance.now() - startChrono;        // measure cycle time in milliseconds
+                this.cycleSpan   += cycleTime_ms;                           // calculate cycle time in milliseconds
+            }, cycleTime_ms );
+
+        }
+
+        ,cpu:
+        {
+            cycle() 
+            {
+                //var dummy = document.getElementById('dutyCycle_pct');
+            } 
+        }
+
+        ,refresh()
+        {
+            if(this.docReady==false) return this.docReady = document.readyState == 'complete';  // skip if document not ready
+            var dutyCycle = Math.round((this.cycleChrono / this.cycleSpan) * 1000)/10;          // calculate duty cycle
+            document.getElementById("dutyCycle_pct").innerHTML = `Duty Cycle: ${dutyCycle}%  (cycleChrono:${Math.round(this.cycleChrono)}ms cycleSpan:${Math.round(this.cycleSpan)}ms)`;
+            this.refreshCountDn = this.frequency_hz / this.refreshRate_hz;                     // reset refresh countdown
+            this.cycleChrono = this.cycleSpan = 0;                                              // reset cycle measurements
+        }
+    };
+
+    oEMU.run();     // run the emulator
+
+</script>
+<div id="dutyCycle_pct"></div>

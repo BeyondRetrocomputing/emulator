@@ -1,0 +1,37 @@
+<script>
+    // v1 GOAL: emulator at warp speed
+    
+    //   - run CPU cycles at 1MHz (beyond 1KHz!)
+    //   - display a trace log 
+
+    const oEMU =                        // immediate instantiation of the emulator object
+    {
+         frequency_hz:  1000000        // emulator system clock frequency
+        ,cycleRate_hz:   2              // emulator interval frequency (too low: bad update speed vs. too high: bad CPU performance)
+        ,i:0                            // interval counter
+
+        ,run() 
+        {
+            const cycleSize      = this.frequency_hz / this.cycleRate_hz;   // amount of cycles per interval
+            const cycleTime_ms  = 1000 / this.cycleRate_hz;                 // duration of one interval
+
+            setInterval(()=>                                                  // arrow function passes 'this' during callback instead of window object
+            {
+                for (let n = 0; n < cycleSize; n++)
+                {
+                    this.cpu.cycle();
+                }
+                document.write(`interval ${this.i++}: ${cycleSize} cycles in ${cycleTime_ms}ms<br>`);   // trace log
+            }, cycleTime_ms );
+
+        }
+
+        ,cpu:
+        {
+            cycle() {} 
+        }
+    };
+
+    oEMU.run();     // run the emulator
+
+</script>
