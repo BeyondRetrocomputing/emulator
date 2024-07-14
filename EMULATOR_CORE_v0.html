@@ -1,0 +1,25 @@
+<script>
+// v0 GOAL: minimal emulator
+
+//   - start the emulator
+//   - run CPU cycles
+//   - display a trace log 
+
+const oEMU =                       // immediate instantiation of the emulator object
+{
+     frequency_hz:  2              // emulator system clock frequency
+    ,i:0                           // interval counter
+    ,run() 
+    {
+        const cycleTime_ms  = 1000 / this.frequency_hz;
+        setInterval(()=>           // arrow function passes 'this' during callback instead of window object
+        {
+            this.cpu.cycle();
+            document.write(`interval ${this.i++}: 1 cycle in ${cycleTime_ms}ms<br>`)
+        }, cycleTime_ms );
+    }
+    ,cpu: { cycle() {} }
+};
+
+oEMU.run();     // run the emulator
+</script>
