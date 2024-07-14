@@ -1,29 +1,29 @@
-# Understanding Computers
+# Understanding computers through emulation
 
 <img src="/res/image_fx_a_computer_in_a_computer_B.jpg?raw=true" width=30% align="left">
 
-This project takes you on a journey to understand the fundamental workings of a **computer**, a **compiler** and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, basics on emulation itself.  
+This project takes you on a journey to understand the fundamental workings of a **computer**, a **compiler** and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, basics on emulation itself.
 
 ## What You'll Learn
 
 - How a basic emulator loop works.
 - The building blocks of a computer: CPU, memory, and I/O.
 - Instruction sets and how they control the computer.
-- Machine code vs. Assembly language.
 - The concept of a program and its execution.
+- Machine code vs. Assembly language.
 - Last, but not least, a good portion of JavaScript programming practice!
 
 ## Getting Started:
 
-This project requires no additional software or server setup. Download this project and start the emulator directly in your browser by clicking the **index.html** file.  All the JavaScript components can be found in the /res folder and can be opened using your favorite development environment with a basic JavaScript editor.
+This project requires no additional software or server setup. Download this project and start the emulator directly in your browser by clicking the **index.html** file.  Alternatively, check out (index.html)[GitHub.io] running directly on GitHub.
+All the JavaScript components can be found in the /res folder and can be opened using your favorite development environment (IDE) with basic JavaScript syntax highlighting.
 
-## Project Structure:
-
+index.html: The main HTML file that displays the emulator interface and loads the JavaScript components.
 cpu.js: Defines the Central Processing Unit with functions for fetching, decoding, and executing instructions.
 memory.js: Implements the memory component, storing data and instructions.
 io.js: Handles input/output operations, allowing interaction with the emulator.
-index.html: The main HTML file that displays the emulator interface and loads the JavaScript components.
-style.css (optional): Provides basic styling for the emulator interface.
+
+
 Running the Emulator:
 
 Open index.html in your development environment.
