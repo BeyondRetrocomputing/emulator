@@ -21,7 +21,7 @@
                 {
                     this.cpu.cycle();
                 }
-                document.write(`interval ${this.i++}: ${cycleSize} cycles in ${cycleTime_ms}ms<br>`);   // trace log
+                document.write(`<div style=font-family:monospace>interval ${this.i++}: ${cycleSize} cycles in ${cycleTime_ms}ms</div>`);   // trace log
             }, cycleTime_ms );
 
         }

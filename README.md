@@ -1,6 +1,6 @@
 # Understanding computers through emulation
 
-<img src="/res/image_fx_a_computer_in_a_computer_B.jpg?raw=true" width=50% align="left">
+<img src="/res/icon_computer_in_computer.jpg?raw=true" width=50% align="left">
 
 This project takes you on a journey to understand the fundamental workings of a **computer**, a **compiler** and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, basics on emulation itself.
 
