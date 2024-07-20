@@ -1,21 +1,19 @@
-# Understanding computers through emulation
+# Understanding computers by emulation
 
 <img src="/res/icon_computer_in_computer.jpg?raw=true" width=50% align="left">
 
-This project takes you on a journey to understand the fundamental workings of a **computer**, a **compiler** and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, basics on emulation itself.
+This project takes you on the fast track understanding the fundamental workings of a **computer**, a **compiler**, and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, the basics on emulation itself.  Whether you prefer to read instructions or watch the videos I recorded on this topic, they can help you understand the very basics of binary-logic-based computing, also called Von Neumann architecture. More powerful architectures exist nowadays, but the concepts outlined here trace the evolution of digital computing as it entered family households around 1980.    
 
 ## What You'll Learn
 
-- How a basic emulator loop works.
-- The building blocks of a computer: CPU, memory, and I/O.
-- Instruction sets and how they control the computer.
+- How a basic emulator loop works (without CPU).
+- The building blocks of a computer: CPU, databus, memory, and I/O.
 - The concept of a program and its execution.
-- Machine code vs. Assembly language.
 - Last, but not least, a good portion of JavaScript programming practice!
 
 ## Getting Started:
 
-This project requires no additional software or server setup. Download this project and start the emulator directly in your browser by clicking the local file **index.html**.  Alternatively, check out [index.html](https://BeyondRetrocomputing.github.io/emulator/) to run this project directly on GitHub.
+While this project starts from very simple code to gradually more complex, you require no additional software or server setup; just some basic understanding of JavaScript.  Download this project and start the emulators directly in your browser by clicking the local file **index.html**.  Alternatively, check out [index.html](https://BeyondRetrocomputing.github.io/emulator/) to run this project directly on GitHub.
 All the JavaScript components can be found in the /res folder and can be opened using your favorite development environment (IDE) featuring basic JavaScript syntax highlighting.
 
 index.html: The main HTML file that displays the emulator interface and loads the JavaScript components.
