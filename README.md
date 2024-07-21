@@ -4,7 +4,7 @@
 
 This project takes you on the fast track understanding the fundamental workings of a **computer**, a **compiler**, and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, the basics on emulation itself. 
 
-Whether you prefer to read instructions on GitHub, watch the videos I recorded on this topic, or both, they are meant to help you understand the very basics of binary-logic-based computing, also called Von Neumann architecture. More powerful architectures exist nowadays, but the concepts outlined here trace the evolution of digital computing as it entered family households around 1980.    
+Whether you prefer to read instructions on GitHub, watch the videos I recorded on this topic, or both, they are meant to help you understand the very basics of binary-logic-based computing, formally called Von Neumann architecture.  Whether one prefers to read instructions or watch the videos we recorded on this topic, they can help you understand the very basics of binary-logic-based computing, also called Von Neumann architecture.  While more powerful architectures exist nowadays, the concepts outlined here trace the evolution of digital computing as it entered our households around 1980 and started participating in our daily lives ever since.
 
 ## What You'll Learn
 
