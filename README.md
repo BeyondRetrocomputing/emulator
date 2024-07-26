@@ -8,10 +8,10 @@ Whether one prefers to read instructions or watch the videos we recorded on this
 
 ## What You'll Learn
 
-- How a basic emulator loop works (without CPU).
-- The building blocks of a computer: CPU, databus, memory, and I/O.
-- The concept of a program and its execution.
-- Last, but not least, a good portion of JavaScript programming practice!
+- A :heart: for the emulator: the system clock
+- Computer :gear:: CPU, databus, memory, and I/O.
+- CPU instructions & program execution
+- Last, but not least, a good portion of JavaScript :coffee: programming practice!
 
 ## Getting Started:
 
@@ -22,7 +22,6 @@ index.html: The main HTML file that displays the emulator interface and loads th
 cpu.js: Defines the Central Processing Unit with functions for fetching, decoding, and executing instructions.
 memory.js: Implements the memory component, storing data and instructions.
 io.js: Handles input/output operations, allowing interaction with the emulator.
-
 
 Running the Emulator:
 
