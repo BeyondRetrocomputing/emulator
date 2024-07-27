@@ -1,4 +1,4 @@
-# Understanding computers by emulation
+# Understanding computer emulation
 
 <img src="/res/icon_computer_in_computer.jpg?raw=true" width=50% align="left">
 
@@ -6,7 +6,7 @@ This project takes you on the fast track, understanding the fundamental workings
 
 **Understanding how to build computer emulators remains extremely valuable**, often misunderstood but omnipresent under different buzzwords like virtual machines (VMs), cross-platform virtualisation, containerisation, cloud computing and many other services we take for granted like Robotic Process Automation (RPA), orchestrators, software-defined networking and more.  
 
-Retrocomputing has gained significant popularity among nostalgic amateurs (in the proper sense of the word), but beyond that; we can't deny Retrocomputing as the key to understanding large bytes of contemporary technology!
+Retrocomputing has gained significant popularity among nostalgic amateurs (in the proper sense of the word), but beyond that; we also should appreciate Retrocomputing as the key to understanding large bytes of contemporary technology!
 
 Whether one prefers to read instructions or watch the videos we recorded on this topic, they can help you understand the very basics of binary-logic-based computing, in other words, a [universal Turing machine](https://en.wikipedia.org/wiki/Universal_Turing_machine) based on the [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture).  While more powerful architectures exist, the concepts outlined here trace the evolution of digital computing as it entered our households around 1980 and has been participating in our daily lives ever since.  In this section, we will step-by-step build all the essential components that make a fully functioning computer.
 
