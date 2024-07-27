@@ -1,0 +1,144 @@
+<script>
+    // v3 GOAL: minimal CPU
+
+    //   - RAM & ROM memory
+    //   - CPU cold/warm boot (using reset vector $FFFC/D LO/HI)
+    //   - CPU program counter
+    //   - CPU instructions: INC & JMP
+    //   - display step trace log 
+
+    const oEMU =                   // immediate instantiation of the emulator object
+    {
+         frequency_hz:    1000     // emulator system clock frequency
+        ,cycleRate_hz:    10       // emulator interval frequency (too low: bad update speed vs. too high: bad CPU performance)
+        ,refreshRate_hz:  1        // display refresh (refreshRate_hz <= cycleRate_hz)
+        ,cycleChrono: 0,cycleSpan: 0, docReady: false
+
+        ,run() 
+        {
+            this.cpu.hw = this.hw;                                          // allow cpu to access hardware (= DATABUS + RAM & ROM)
+            this.hw.io  = this.io;                                          // allow hw to access io
+            this.cpu.com = this;                                            // allow cpu to access parent object
+
+            this.cycleSize      = this.frequency_hz / this.cycleRate_hz;    // amount of cycles per interval
+            this.refreshCountDn = this.frequency_hz / this.refreshRate_hz;  // amount of refreshes per interval
+            const cycleTime_ms  = 1000 / this.cycleRate_hz;                 // duration of one interval
+
+            this.hw.restart();
+            this.cpu.restart();
+
+            setInterval(()=>                                                // arrow function passes 'this' during callback instead of window object
+            {
+                const startChrono = performance.now();                      // start chronometer
+                for (let n = 0; n < this.cycleSize; n++)
+                {
+                    this.cpu.cycle();
+                    if (this.refreshCountDn-- <= 0) this.refresh();         // countdown until display refresh
+                }
+                this.cycleChrono += performance.now() - startChrono;        // measure cycle time in milliseconds
+                this.cycleSpan   += cycleTime_ms;                           // calculate cycle time in milliseconds
+            }, cycleTime_ms );
+
+        }
+        ,cpu:
+        {
+             RESET_VECTOR: 0xfffc
+            ,pc: new Uint16Array(1)
+            ,hw:this.hw
+            ,restart()              { this.reset() }
+            ,reset()                { this.pc[0] = this.readWord(this.RESET_VECTOR) }
+            ,readByte(addr)         { return this.hw.read(addr) }
+            ,writeByte(addr, d8)    { this.hw.write(addr, d8)   }
+            ,readWord(addr)         { return this.hw.read(addr) | this.hw.read(addr + 1) << 8 }
+            ,cycle() 
+            {
+                var opcode  = this.hw.read(this.pc[0]++);           // fetch opcode  (1 byte)
+                var operand = this.readWord(this.pc[0]);            // fetch operand (2 bytes, in this example)
+                this.pc[0]+=2
+                var d8 = 0;
+
+                switch(opcode)
+                {
+                    case 0xEE:  // INC
+                        d8 = (this.readByte(operand) + 1) & 0xFF;   // read byte from address in operand, increment +1, limit overrun to 0x100
+                        this.writeByte(operand, d8);                // write the incremented value in same address
+                    break;
+                    case 0x4C:  // JMP
+                        this.pc[0] = operand;
+                    break;
+                }
+                //var opcode = 0;
+                document.getElementById("stepTraceLog").innerHTML = `opcode:$${this.com.getHex(opcode,2)} at $${this.com.getHex(this.pc[0],4)} BYTE0=$${this.com.getHex(this.hw.read(0),2)}`;
+            } 
+        }
+        ,hw:
+        {
+             ADDR_SPACE : 0xFFFF
+            ,RAM_DEF    : new Uint16Array([0x0000, 0xc000])         // RAM DEFINITION
+            ,IO_DEF     : new Uint16Array([0xc000, 0x1000])         // IO DEFINITION 
+            ,ROM_DEF    : new Uint16Array([0xd000, 0x4000])         // ROM DEFINITION
+
+            ,read(addr)                                             // READ FROM DATABUS
+            { 
+                if(addr>=this.RAM_DEF[0]      && addr<this.RAM_DEF[0]+this.RAM_DEF[1]) return this.ram[addr - this.RAM_DEF[0]];
+                else if(addr>=this.IO_DEF[0]  && addr<this.IO_DEF[0]+this.IO_DEF[1])   return this.io.read(addr - this.IO_DEF[0]);
+                else if(addr>=this.ROM_DEF[0] && addr<this.ROM_DEF[0]+this.ROM_DEF[1]) return this.rom[addr - this.ROM_DEF[0]];
+            }
+            ,write(addr, value)                                     // WRITE TO DATABUS
+            { 
+                if(addr>=this.RAM_DEF[0]      && addr<this.RAM_DEF[0]+this.RAM_DEF[1]) this.ram[addr] = value
+                else if(addr>=this.IO_DEF[0]  && addr<this.IO_DEF[0]+this.IO_DEF[1])   this.io.write(addr - this.IO_DEF[0]);
+                else if(addr>=this.ROM_DEF[0] && addr<this.ROM_DEF[0]+this.ROM_DEF[1]) return;
+            }
+            ,restart() 
+            {
+                this.ram        = new Uint8Array(this.RAM_DEF[1])   // RESERVE ADDRESSABLE RAM
+                this.rom        = new Uint8Array(this.ROM_DEF[1])   // RESERVE ADDRESSABLE RAM
+
+                for (var i = this.RAM_DEF[0]; i < this.RAM_DEF[0] + this.RAM_DEF[1]; i++)
+                    this.ram[i] = Math.floor(Math.random() * 256);  // RANDOMISE MEMORY (don't do on reset!) - flipflop cicuitry is unpredictable at boot time
+
+                for (var i = this.ROM_DEF[0]; i < this.ROM_DEF[0] + this.ROM_DEF[1]; i++)
+                    this.rom[i] = 0x00;                             // FILL ROM WITH ZEROES (ROM NEVER CONTAINS RANDOM DATA)
+
+                                                                    // MY FIRST ROM CODE STARTS ON RESET VECTOR ADDRESS
+                this.rom[ 0x0000 ] = 0xEE;                          // INCREMENT ADDRESS $0000
+                this.rom[ 0x0001 ] = 0x00;
+                this.rom[ 0x0002 ] = 0x00;
+
+                this.rom[ 0x0003 ] = 0x4C;                          // LOOP BACK TO ADDRESS $D000
+                this.rom[ 0x0004 ] = 0x00;
+                this.rom[ 0x0005 ] = 0xD0;
+
+                this.rom[ 0x2FFC ] = 0x00;                          // RESET VECTOR = $D000
+                this.rom[ 0x2FFD ] = 0xD0;
+            }
+        }
+        ,io:
+        {
+            read(addr)                                              // READ FROM IO
+            {
+                return 0xFF;
+            }
+        }
+        ,refresh()
+        {
+            if(this.docReady==false) return this.docReady = document.readyState == 'complete';  // skip if document not ready
+            var dutyCycle = Math.round((this.cycleChrono / this.cycleSpan) * 1000)/10;          // calculate duty cycle
+            document.getElementById("dutyCycle_pct").innerHTML = `Duty Cycle: ${dutyCycle}%  (cycleChrono:${Math.round(this.cycleChrono)}ms cycleSpan:${Math.round(this.cycleSpan)}ms)`;
+            this.refreshCountDn = this.frequency_hz / this.refreshRate_hz;                     // reset refresh countdown
+            this.cycleChrono = this.cycleSpan = 0;                                              // reset cycle measurements
+        }
+        ,getHex(val,digits)
+        {
+            return ("0000"+val.toString(16).toUpperCase()).slice(-digits);
+        }
+    }
+
+    oEMU.run();     // run the emulator
+
+</script>
+<body style=font-family:monospace>
+<div id="dutyCycle_pct"></div>
+<div id="stepTraceLog"></div>
+</body>
