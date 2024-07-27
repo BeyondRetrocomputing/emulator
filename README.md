@@ -4,9 +4,9 @@
 
 This project takes you on the fast track, understanding the fundamental workings of a **computer**, a **compiler**, and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone the basics of emulation itself.  
 
-**Understanding how to build computer emulators remains extremely valuable**.  Emulators are often misregarded as the architectural pattern for their acclaimed offsprings called virtual machines (VMs), containers, cloud computing and many other process-based services.
+**Understanding how to build computer emulators remains extremely valuable**.  Emulators are often disregarded as the architectural pattern for their acclaimed offsprings called virtual machines (VMs), cloud computing, containers, nodes, pods and many other derivatives.
 
-Above and beyond retrocomputing, as popularised by nostalgic amateurs, the wider audience can also appreciate retrocomputing, which is merely the key to understanding large bytes of contemporary technology!
+Above and beyond retrocomputing, as popularised by nostalgic amateurs, the wider audience can also appreciate retrocomputing, merely as the key to understanding large bytes of poorly understood contemporary technology!
 
 Whether one prefers to read instructions or watch the videos we recorded on this topic, they can help you understand the very basics of binary-logic-based computing, in other words, a [universal Turing machine](https://en.wikipedia.org/wiki/Universal_Turing_machine) based on the [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture).  While more advanced architectures exist as we speak, this one traces back to digital computing as it entered our households around 1980 and has ever since participated in our daily lives.  In this section, we will step-by-step build all the essential components that make a fully functioning computer.
 
