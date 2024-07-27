@@ -2,15 +2,18 @@
 
 <img src="/res/icon_computer_in_computer.jpg?raw=true" width=50% align="left">
 
-This project takes you on the fast track understanding the fundamental workings of a **computer**, a **compiler**, and a **debugger**, all within your browser! But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone, the basics on emulation itself. 
+This project takes you on the fast track, understanding the fundamental workings of a **computer**, a **compiler**, and a **debugger**, all within your browser!  But first and foremost, we'll build a hassle-free computer emulator entirely in JavaScript, demonstrating core concepts like processing instructions, memory, and input/output, let alone the basics of emulation itself.  **Understanding how to build computer emulators remains extremely valuable** for several reasons; we take a retrocomuting architecture as an example for its simplicity, but emulator architectures gained enormous popularity under different buzzwords like virtual machines (VMs), cross-platform virtualisation, containerisation, cloud computing and many other services we take for granted like Robotic Process Automation (RPA), orchestrators, software-defined networking.
 
-Whether one prefers to read instructions or watch the videos we recorded on this topic, they can help you understand the very basics of binary-logic-based computing, in other words, a [universal Turing machine](https://en.wikipedia.org/wiki/Universal_Turing_machine) based on the [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture).  While more powerful architectures exist nowadays, the concepts outlined here trace the evolution of digital computing as it entered our households around 1980 and has been participating in our daily lives ever since.  In this section, we will step-by-step build all the essential components that make a fully functioning computer.
+Whether one prefers to read instructions or watch the videos we recorded on this topic, they can help you understand the very basics of binary-logic-based computing, in other words, a [universal Turing machine](https://en.wikipedia.org/wiki/Universal_Turing_machine) based on the [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture).  While more powerful architectures exist, the concepts outlined here trace the evolution of digital computing as it entered our households around 1980 and has been participating in our daily lives ever since.  In this section, we will step-by-step build all the essential components that make a fully functioning computer.
 
 ## What You'll Learn
 
 - A :heart: for the emulator: the system clock
-- Computer :gear:: CPU, databus, memory, and I/O.
-- CPU instructions & program execution
+- Computer :gear::
+   - the databus
+   - memory (RAM/ROM)
+   - I/O (memory-mapped)
+   - CPU (instructions & program execution)
 - Last, but not least, a good portion of JavaScript :coffee: programming practice!
 
 ## Getting Started:
